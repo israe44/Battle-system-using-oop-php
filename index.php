@@ -14,7 +14,7 @@ echo "Number of characters" . Perso::getNumberPerso() . "<br>";
 
 echo "<h2>Guerrier</h2>";
 
-$goku = new Gerrier("Goku", 100, 10, 5);
+$goku = new Guerrier("Goku", 100, 10, 5);
 $vegeta = new Guerrier("Vegeta", 80, 7, 3);
 
 // Guerrier takes reduced damage
@@ -24,5 +24,5 @@ echo "After taking 15 damage (armor reduces it): " . $goku . "<br>";
 
 //weaponzz
 $sword = new Weapon ("Sword", 20); //durability is set to 100 by default
-$staff = new Weapon ("Staff", 10, 80) //durability is set to 80 custom
+$staff = new Weapon ("Staff", 10, 80); //durability is set to 80 custom
 ?>
