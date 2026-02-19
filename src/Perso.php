@@ -8,6 +8,7 @@ class Perso {
     protected $nom;
     protected $hp = 100;
     protected $puissance;
+    protected $weapon = null; //this allows characters to start with no weapon
     const MAX_HP = 200;
     const MIN_HP = 0;
 
@@ -45,7 +46,23 @@ class Perso {
     public function setPuissance($puissance) {
         $this->puissance = $puissance;
     }
-    
+    public function getWeapon() { //checks what weapon does the character have
+        return $this->weapon;
+    }
+    public function equipWeapon($weapon) {  //this method allows the character to equip a weapon
+        $this->weapon = $weapon;
+        echo "{$this->nom} equipped {$weapon->getName()} <br>";
+    }
+    //this method allows the character to unequip a weapon
+    public function unequipWeapon() {
+        if ($this->weapon !==null) {
+            echo "{$this->nom} unequipped {$this->weapon->getName()}! <br>";
+            $this->weapon = null;
+            } else {
+                echo "{$this->nom} has no weapon to unequip! <br>";
+            }
+        }
+  
     public function hit($degats) {
         $this->hp = $this->hp - $degats;
 
