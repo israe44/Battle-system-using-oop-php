@@ -4,13 +4,17 @@
 * private : can only be accessed from within the class
 * protected : can be accessed from within the class and its subclass
 */
-class Perso {
+require_once 'Attackable.php';
+require_once 'Healable.php';
+abstract class Perso implements Attackable, Healable { //u can implement multiple interfaces (separated by a ,)
     protected $nom;
     protected $hp = 100;
     protected $puissance;
     protected $weapon = null; //this allows characters to start with no weapon
     const MAX_HP = 200;
     const MIN_HP = 0;
+    abstract public function getCharacterType();
+    abstract public function specialCharacterType($target);
 
     public static $numberPerso = 0;
     public function __construct($nom, $hp, $puissance) {
@@ -79,5 +83,18 @@ class Perso {
     }
     public function __toString() {
         return "Nom: " . $this->nom . ", HP: " . $this->hp . "%" . ", Puissance: " . $this->puissance;
+    }
+    public function attack($target) {
+        $damage = $this->getDamage();
+        echo "{$this->nom} attacks ! Damage: {$damage}<br>";
+        $target->hit($damage);
+    }
+    public function getDamage() {
+        $damage = $this->puissance;  // start with base power
+        if ($this->weapon !== null) {   //ckeck if has weapon
+            $damage += $this->weapon->getDamage();   //add weapon damage to existing value
+
+        } 
+        return $damage;   //return total
     }
 }
